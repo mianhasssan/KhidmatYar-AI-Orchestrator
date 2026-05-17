@@ -12,9 +12,14 @@ def test_request(message):
             result = response.json()
             print("\n[AI Response]:")
             print(result["ai_response"])
-            print("\n[Agent Trace Logs]:")
-            for log in result["trace_logs"]:
-                print(f" - {log}")
+            
+            print("\n[AI Brain Steps]:")
+            for step in result["agent_trace"]["steps"]:
+                print(f" - {step['agent']}: {step['task']} [{step['status']}]")
+            
+            print("\n[Recommendations]:")
+            for rec in result["recommendations"]:
+                print(f" - {rec['name']} ({rec['distance']}) - {rec['price']}")
         else:
             print(f"Error: {response.status_code}")
             print(response.text)
@@ -22,5 +27,4 @@ def test_request(message):
         print(f"Connection Failed: {e}")
 
 if __name__ == "__main__":
-    # Test with Roman Urdu
     test_request("Mujhe kal subah G-13 mein plumber chahiye")
