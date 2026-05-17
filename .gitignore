@@ -29,6 +29,7 @@ build/
 .flutter-plugins-dependencies
 *.keystore
 !default.default.keystore
+flutter-app/lib/config/keys.dart
 
 # macOS
 .DS_Store

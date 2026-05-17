@@ -6,6 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'services_all_screen.dart';
 import '../theme/app_theme.dart';
+import '../config/keys.dart';
 
 class HomeScreen extends StatefulWidget {
   final VoidCallback? onSearchTap;
@@ -40,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Position position = await Geolocator.getCurrentPosition();
         await prefs.setDouble('user_lat', position.latitude);
         await prefs.setDouble('user_lng', position.longitude);
-        final geoUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.latitude},${position.longitude}&key=AIzaSyCWC87PKAbxI5yk0b7mEjHKG_eBHMN_udU";
+        final geoUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.latitude},${position.longitude}&key=${APIKeys.googleMapsKey}";
         final response = await http.get(Uri.parse(geoUrl));
         if (response.statusCode == 200) {
           final data = jsonDecode(response.body);

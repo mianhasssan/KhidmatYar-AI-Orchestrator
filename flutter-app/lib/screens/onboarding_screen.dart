@@ -6,6 +6,7 @@ import 'main_navigation.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import '../config/keys.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -46,7 +47,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       // Perform dynamic reverse geocoding via Google Geocoding API
       String userCity = "G-13, Islamabad, Pakistan";
       try {
-        final geoUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.latitude},${position.longitude}&key=AIzaSyCWC87PKAbxI5yk0b7mEjHKG_eBHMN_udU";
+        final geoUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.latitude},${position.longitude}&key=${APIKeys.googleMapsKey}";
         final response = await http.get(Uri.parse(geoUrl));
         if (response.statusCode == 200) {
           final data = jsonDecode(response.body);

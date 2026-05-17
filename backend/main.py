@@ -28,8 +28,8 @@ app.add_middleware(
 # Configure the NEW Google GenAI client
 client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
 
-# Use the hardcoded key safely just for backend API calls
-MAPS_API_KEY = "AIzaSyCWC87PKAbxI5yk0b7mEjHKG_eBHMN_udU"
+# Load the maps key safely from environment variables (secured on GitHub via .gitignore)
+MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY", "")
 
 # --- API MODELS ---
 class UserRequest(BaseModel):
